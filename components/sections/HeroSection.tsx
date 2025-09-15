@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MapPin, Calendar } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { MapPin, Calendar } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export function HeroSection() {
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/5 py-20">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-6 max-w-6xl">
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     <div className="flex-1 text-center lg:text-left">
                         <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-6">
@@ -18,7 +18,7 @@ export function HeroSection() {
                             안녕하세요! 👋
                             <br />
                             <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                                개발자 기순
+                                개발자 기손
                             </span>
                             입니다
                         </h1>
@@ -61,7 +61,7 @@ export function HeroSection() {
                                     alt="Developer Profile"
                                 />
                                 <AvatarFallback className="text-4xl font-bold bg-gradient-to-br from-primary to-primary/60 text-primary-foreground">
-                                    기순
+                                    기손
                                 </AvatarFallback>
                             </Avatar>
                         </div>
