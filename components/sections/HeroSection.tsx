@@ -18,7 +18,7 @@ export function HeroSection() {
                             안녕하세요! 👋
                             <br />
                             <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                                개발자 기손
+                                개발자 기순
                             </span>
                             입니다
                         </h1>
@@ -61,7 +61,7 @@ export function HeroSection() {
                                     alt="Developer Profile"
                                 />
                                 <AvatarFallback className="text-4xl font-bold bg-gradient-to-br from-primary to-primary/60 text-primary-foreground">
-                                    기손
+                                    기순
                                 </AvatarFallback>
                             </Avatar>
                         </div>
