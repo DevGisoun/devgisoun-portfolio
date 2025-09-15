@@ -4,36 +4,36 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Briefcase } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { ExternalLink, Briefcase } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 
 const projects = [
     {
-        title: "E-Commerce Platform",
+        title: 'E-Commerce Platform',
         description:
-            "Full-stack e-commerce solution with Next.js, featuring user authentication, payment integration, and admin dashboard.",
-        tech: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
-        link: "https://github.com/devgisoun/ecommerce",
-        live: "https://ecommerce-demo.com",
+            'Full-stack e-commerce solution with Next.js, featuring user authentication, payment integration, and admin dashboard.',
+        tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe'],
+        link: 'https://github.com/devgisoun/ecommerce',
+        live: 'https://ecommerce-demo.com',
     },
     {
-        title: "Task Management App",
+        title: 'Task Management App',
         description:
-            "Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-        tech: ["React", "Node.js", "Socket.io", "MongoDB"],
-        link: "https://github.com/devgisoun/taskmanager",
-        live: "https://taskmanager-demo.com",
+            'Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
+        tech: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
+        link: 'https://github.com/devgisoun/taskmanager',
+        live: 'https://taskmanager-demo.com',
     },
     {
-        title: "AI Chat Assistant",
+        title: 'AI Chat Assistant',
         description:
-            "Intelligent chat assistant powered by OpenAI API with custom knowledge base and conversation memory.",
-        tech: ["Python", "FastAPI", "OpenAI", "React"],
-        link: "https://github.com/devgisoun/ai-assistant",
-        live: "https://ai-assistant-demo.com",
+            'Intelligent chat assistant powered by OpenAI API with custom knowledge base and conversation memory.',
+        tech: ['Python', 'FastAPI', 'OpenAI', 'React'],
+        link: 'https://github.com/devgisoun/ai-assistant',
+        live: 'https://ai-assistant-demo.com',
     },
 ];
 
@@ -64,20 +64,29 @@ export function ProjectsSection() {
                                         {project.title}
                                     </span>
                                     <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <Button
-                                            size="icon"
-                                            variant="ghost"
-                                            className="h-8 w-8"
-                                        >
-                                            <FaGithub className="h-4 w-4" />
-                                        </Button>
-                                        <Button
-                                            size="icon"
-                                            variant="ghost"
-                                            className="h-8 w-8"
-                                        >
-                                            <ExternalLink className="h-4 w-4" />
-                                        </Button>
+                                        {project.link ? (
+                                            <Button
+                                                size="icon"
+                                                variant="ghost"
+                                                className="h-8 w-8"
+                                            >
+                                                <FaGithub className="h-4 w-4" />
+                                            </Button>
+                                        ) : (
+                                            <div className="h-4 w-4"></div>
+                                        )}
+
+                                        {project.live ? (
+                                            <Button
+                                                size="icon"
+                                                variant="ghost"
+                                                className="h-8 w-8"
+                                            >
+                                                <ExternalLink className="h-4 w-4" />
+                                            </Button>
+                                        ) : (
+                                            <div className="h-4 w-4"></div>
+                                        )}
                                     </div>
                                 </CardTitle>
                                 <CardDescription>
