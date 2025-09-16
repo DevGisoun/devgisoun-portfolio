@@ -39,14 +39,13 @@ export function ExpandableSection({
                 }`}
                 onClick={handleToggle}
             >
-                {/* 상세 내용이 있을 때만 아이콘 표시 */}
-                {hasDetails && (
-                    <ChevronRight
-                        className={`h-2 w-2 transition-transform ${
-                            isOpen ? 'rotate-90' : ''
-                        }`}
-                    />
-                )}
+                {/* 아이콘 공간 유지를 위해 항상 렌더링하고 opacity로 제어 */}
+                <ChevronRight
+                    className={`transition-all h-4 w-4 ${
+                        isOpen ? 'rotate-90' : ''
+                    } ${hasDetails ? 'opacity-100' : 'opacity-0'}`}
+                    strokeWidth={2.5}
+                />
                 <div className="text-base flex-1">{title}</div>
             </div>
             {isOpen && hasDetails && (
