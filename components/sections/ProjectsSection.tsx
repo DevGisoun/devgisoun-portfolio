@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Briefcase } from 'lucide-react';
 import { useState } from 'react';
-import { ProjectDetailModal } from '@/components/ProjectDetailModal';
+import { ProjectDetailModal } from '@/components/modals/ProjectDetailModal';
 
 const projects = [
     {
