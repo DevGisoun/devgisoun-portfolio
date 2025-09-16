@@ -4,9 +4,18 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from '@/components/ui/alert-dialog'; // AlertDialog import 추가
 import { Award } from 'lucide-react';
 import { useState } from 'react';
-import { sectionHeadings } from '@/data';
+import { sectionHeadings } from '../../data'; // 경로 수정
 
 export function ContactSection() {
     const [formData, setFormData] = useState({
@@ -15,6 +24,8 @@ export function ContactSection() {
         subject: '',
         message: '',
     });
+    // Alert Dialog의 열림/닫힘 상태를 관리하기 위한 state
+    const [isAlertOpen, setIsAlertOpen] = useState(false);
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,8 +39,8 @@ export function ContactSection() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // TODO: 실제 폼 제출 로직 구현
-        console.log('Form submitted:', formData);
+        // 실제 폼 제출 로직 대신 Alert Dialog를 열도록 설정
+        setIsAlertOpen(true);
     };
 
     return (
@@ -49,6 +60,7 @@ export function ContactSection() {
                     <Card className="bg-gray-800/50 border-slate-700">
                         <CardContent className="p-8">
                             <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* Input fields... (생략) */}
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label
@@ -129,7 +141,6 @@ export function ContactSection() {
                                         {formData.message.length}/500
                                     </div>
                                 </div>
-
                                 <div className="text-center">
                                     <Button
                                         type="submit"
@@ -144,6 +155,24 @@ export function ContactSection() {
                     </Card>
                 </div>
             </div>
+
+            {/* "준비 중" 알림을 위한 Alert Dialog */}
+            <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>알림</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            준비 중인 기능입니다.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        {/* AlertDialogAction은 기본적으로 다이얼로그를 닫습니다. */}
+                        <AlertDialogAction className="bg-black text-white hover:bg-black/90">
+                            확인
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </section>
     );
 }
