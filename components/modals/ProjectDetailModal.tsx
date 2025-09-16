@@ -4,25 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { X, Github, ExternalLink, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { type Project } from '@/data';
 
 interface ProjectDetailModalProps {
-    project: {
-        title: string;
-        description: string;
-        tech: string[];
-        thumbnail: string;
-        category?: string[];
-        period?: string;
-        teamInfo?: string;
-        detailedDescription?: string;
-        githubUrl?: string;
-        deployUrl?: string;
-        features?: string[];
-        techDetails?: { name: string; description?: string }[];
-        contributions?: { title: string; details?: string[] }[];
-        troubleShooting?: { title: string; details: string[] }[];
-        screenshots?: { url: string; caption: string }[];
-    };
+    project: Project;
     isOpen: boolean;
     onClose: () => void;
 }
@@ -70,15 +55,15 @@ export function ProjectDetailModal({
     };
 
     return (
-        <div className="fixed inset-0 z-[20] overflow-y-auto py-10 px-40 max-md:px-0 max-md:py-0">
+        <div className="fixed inset-0 z-[60] overflow-y-auto py-10 px-40 max-md:px-0 max-md:py-0">
             <div
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[-1]"
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[59]"
                 onClick={handleOverlayClick}
             />
 
-            <section className="relative w-full mx-auto bg-white pb-10 min-h-screen h-auto max-md:h-auto">
+            <section className="relative w-full mx-auto bg-white pb-10 min-h-screen h-auto max-md:h-auto z-[61]">
                 {/* 우상단 고정 버튼들 */}
-                <div className="fixed top-10 right-[3rem] flex flex-col items-center gap-5 z-10 max-md:sticky max-md:flex-row-reverse max-md:justify-between max-md:top-0 max-md:right-0 max-md:bg-white max-md:backdrop-blur-sm max-md:px-3 max-md:py-2 max-md:border-solid max-md:border-b max-md:border-gray-300">
+                <div className="fixed top-10 right-[3rem] flex flex-col items-center gap-5 z-[62] max-md:sticky max-md:flex-row-reverse max-md:justify-between max-md:top-0 max-md:right-0 max-md:bg-white max-md:backdrop-blur-sm max-md:px-3 max-md:py-2 max-md:border-solid max-md:border-b max-md:border-gray-300">
                     {/* 닫기 버튼 */}
                     <Button
                         onClick={onClose}
