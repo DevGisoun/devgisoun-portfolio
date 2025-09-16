@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { personalInfo } from '@/data';
+import { Button } from '../ui/button'; // 경로 수정
+import { personalInfo, navLinks, contactLink } from '../../data'; // 경로 수정
 
 export function Header() {
     const scrollToSection = (sectionId: string) => {
@@ -23,34 +23,25 @@ export function Header() {
                         {personalInfo.nickname}
                     </div>
 
-                    {/* 우측: 네비게이션 버튼들 */}
+                    {/* 우측: 네비게이션 버튼들 (데이터 기반으로 렌더링) */}
                     <nav className="flex items-center gap-2">
-                        <Button
-                            variant="ghost"
-                            className="text-muted-foreground hover:text-foreground hover:bg-transparent transition-colors rounded-none"
-                            onClick={() => scrollToSection('skills')}
-                        >
-                            기술 스택
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            className="text-muted-foreground hover:text-foreground hover:bg-transparent transition-colors rounded-none"
-                            onClick={() => scrollToSection('projects')}
-                        >
-                            프로젝트
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            className="text-muted-foreground hover:text-foreground hover:bg-transparent transition-colors rounded-none"
-                            onClick={() => scrollToSection('experience')}
-                        >
-                            경력
-                        </Button>
+                        {navLinks.map((link) => (
+                            <Button
+                                key={link.sectionId}
+                                variant="ghost"
+                                className="text-muted-foreground hover:text-foreground hover:bg-transparent transition-colors rounded-none"
+                                onClick={() => scrollToSection(link.sectionId)}
+                            >
+                                {link.label}
+                            </Button>
+                        ))}
                         <Button
                             className="bg-foreground text-background hover:bg-foreground/90 transition-colors rounded-md ml-4"
-                            onClick={() => scrollToSection('contact')}
+                            onClick={() =>
+                                scrollToSection(contactLink.sectionId)
+                            }
                         >
-                            Contact Me
+                            {contactLink.label}
                         </Button>
                     </nav>
                 </div>

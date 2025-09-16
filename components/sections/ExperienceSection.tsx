@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { GraduationCap, Briefcase, MapPin } from 'lucide-react';
-import { experiences } from '@/data';
+import { experiences, sectionHeadings } from '@/data';
 
 export function ExperienceSection() {
     return (
@@ -10,10 +10,10 @@ export function ExperienceSection() {
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-foreground mb-4 flex items-center justify-center gap-3">
                         <GraduationCap className="h-8 w-8 text-primary" />
-                        경력 사항
+                        {sectionHeadings.experience.title}
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        다양한 환경에서의 개발 경험을 통해 성장해왔습니다.
+                        {sectionHeadings.experience.subtitle}
                     </p>
                 </div>
 
@@ -43,7 +43,6 @@ export function ExperienceSection() {
                                             {exp.description}
                                         </p>
 
-                                        {/* 주요 성과 */}
                                         {exp.achievements &&
                                             exp.achievements.length > 0 && (
                                                 <div className="mb-4">
@@ -71,7 +70,6 @@ export function ExperienceSection() {
                                                 </div>
                                             )}
 
-                                        {/* 사용 기술 */}
                                         {exp.technologies &&
                                             exp.technologies.length > 0 && (
                                                 <div className="flex flex-wrap gap-2">

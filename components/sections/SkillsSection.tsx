@@ -1,12 +1,9 @@
 import { Badge } from '@/components/ui/badge';
 import { Code } from 'lucide-react';
-import { getSkillNames, getSkillsByCategory } from '@/data';
+import { getSkillNames, sectionHeadings } from '@/data';
 
 export function SkillsSection() {
     const skillNames = getSkillNames();
-    // 필요시 카테고리별로 분류하여 표시할 수도 있습니다
-    // const frontendSkills = getSkillsByCategory('frontend');
-    // const backendSkills = getSkillsByCategory('backend');
 
     return (
         <section id="skills" className="py-20 bg-muted/20">
@@ -14,11 +11,10 @@ export function SkillsSection() {
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-foreground mb-4 flex items-center justify-center gap-3">
                         <Code className="h-8 w-8 text-primary" />
-                        기술 스택
+                        {sectionHeadings.skills.title}
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        다양한 기술을 활용하여 확장 가능하고 효율적인 솔루션을
-                        구축합니다.
+                        {sectionHeadings.skills.subtitle}
                     </p>
                 </div>
 

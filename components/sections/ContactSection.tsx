@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Award } from 'lucide-react';
 import { useState } from 'react';
+import { sectionHeadings } from '@/data';
 
 export function ContactSection() {
     const [formData, setFormData] = useState({
@@ -37,12 +38,10 @@ export function ContactSection() {
                 <div className="text-center max-w-2xl mx-auto mb-12">
                     <h2 className="text-3xl font-bold mb-6 flex items-center justify-center gap-3">
                         <Award className="h-8 w-8 text-white" />
-                        함께 일해요!
+                        {sectionHeadings.contact.title}
                     </h2>
                     <p className="text-neutral-300 mb-8 text-lg leading-relaxed">
-                        새로운 프로젝트나 흥미로운 기회에 대해 이야기하고
-                        싶으시다면 언제든 연락해 주세요. 함께 멋진 것을
-                        만들어봅시다!
+                        {sectionHeadings.contact.subtitle}
                     </p>
                 </div>
 

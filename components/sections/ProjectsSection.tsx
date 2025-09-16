@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Briefcase } from 'lucide-react';
 import { useState } from 'react';
 import { ProjectDetailModal } from '@/components/modals/ProjectDetailModal';
-import { projects, type Project } from '@/data';
+import { projects, type Project, sectionHeadings } from '@/data';
 
 export function ProjectsSection() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(
@@ -30,11 +30,10 @@ export function ProjectsSection() {
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-foreground mb-4 flex items-center justify-center gap-3">
                         <Briefcase className="h-8 w-8 text-primary" />
-                        주요 프로젝트
+                        {sectionHeadings.projects.title}
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        다양한 도메인에서 사용자 중심의 애플리케이션을
-                        개발했습니다.
+                        {sectionHeadings.projects.subtitle}
                     </p>
                 </div>
 

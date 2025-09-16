@@ -9,6 +9,8 @@ export {
     getSkillNames,
 } from './skills';
 export { personalInfo, contactInfo, socialLinks } from './personal';
+export { siteConfig, navLinks, contactLink } from './site';
+export { sectionHeadings } from './content';
 
 // 타입들도 함께 내보내기
 export type * from '../types';
