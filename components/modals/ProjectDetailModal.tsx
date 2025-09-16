@@ -4,8 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { X, Github, ExternalLink } from 'lucide-react';
 import { type Project } from '@/data';
-import { ExpandableSection } from '../sections/ExpandableSection'; // 경로 수정
-import { BaseModal } from './BaseModal'; // 경로 수정
+import { ExpandableSection } from '@/components/sections/ExpandableSection';
+import { BaseModal } from '@/components/modals/BaseModal';
+import { DetailSection } from '@/components/sections/DetailSection';
 
 interface ProjectDetailModalProps {
     project: Project;
@@ -21,7 +22,7 @@ export function ProjectDetailModal({
     return (
         <BaseModal isOpen={isOpen} onClose={onClose}>
             <section className="relative w-full mx-auto bg-white pb-10 min-h-screen h-auto max-md:h-auto z-[61]">
-                {/* 우상단 고정 버튼들 */}
+                {/* Floating Action Buttons */}
                 <div className="fixed top-10 right-[3rem] flex flex-col items-center gap-5 z-[62] max-md:sticky max-md:flex-row-reverse max-md:justify-between max-md:top-0 max-md:right-0 max-md:bg-white max-md:backdrop-blur-sm max-md:px-3 max-md:py-2 max-md:border-solid max-md:border-b max-md:border-gray-300">
                     <Button
                         onClick={onClose}
@@ -47,7 +48,6 @@ export function ProjectDetailModal({
                                 </span>
                             </a>
                         )}
-
                         {project.deployUrl && (
                             <a
                                 href={project.deployUrl}
@@ -67,7 +67,7 @@ export function ProjectDetailModal({
                     </div>
                 </div>
 
-                {/* 상단 헤더 섹션 */}
+                {/* Project Header */}
                 <section className="relative flex flex-col items-center z-[1] p-10 before:block before:absolute before:top-0 before:left-0 before:w-full before:bg-[#77D1FD] before:h-[70%] before:z-[-1] after:block after:absolute after:top-0 after:left-0 after:w-full after:h-[70%] after:bg-gradient-to-t after:from-black/30 after:z-[-1]">
                     <div className="flex gap-1 mb-4">
                         {project.category?.map((cat) => (
@@ -106,7 +106,7 @@ export function ProjectDetailModal({
                     </div>
                 </section>
 
-                {/* 콘텐츠 섹션 */}
+                {/* Content Section */}
                 <section className="px-[20%] pb-10 flex flex-col gap-10 text-base max-md:px-[5%]">
                     <div className="text-center border-b border-gray-300 pb-10">
                         <p className="leading-relaxed">
@@ -114,10 +114,7 @@ export function ProjectDetailModal({
                         </p>
                     </div>
 
-                    <div>
-                        <h3 className="text-2xl font-bold mt-2 mb-4">
-                            🔍 주요 기능 및 특징
-                        </h3>
+                    <DetailSection title="🔍 주요 기능 및 특징">
                         <ul className="flex flex-col gap-1">
                             {(project.features || []).map((feature, index) => (
                                 <li
@@ -128,12 +125,9 @@ export function ProjectDetailModal({
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </DetailSection>
 
-                    <div>
-                        <h3 className="text-2xl font-bold mt-2 mb-4">
-                            🛠️ 사용 기술 및 언어
-                        </h3>
+                    <DetailSection title="🛠️ 사용 기술 및 언어">
                         <div className="flex flex-col gap-1">
                             {project.tech.map((tech) => (
                                 <ExpandableSection
@@ -147,12 +141,9 @@ export function ProjectDetailModal({
                                 </ExpandableSection>
                             ))}
                         </div>
-                    </div>
+                    </DetailSection>
 
-                    <div>
-                        <h3 className="text-2xl font-bold mt-2 mb-4">
-                            ✨ 작업 기여도
-                        </h3>
+                    <DetailSection title="✨ 작업 기여도">
                         <div className="flex flex-col gap-1">
                             {(project.contributions || []).map(
                                 (contribution, index) => (
@@ -180,12 +171,9 @@ export function ProjectDetailModal({
                                 )
                             )}
                         </div>
-                    </div>
+                    </DetailSection>
 
-                    <div>
-                        <h3 className="text-2xl font-bold mt-2 mb-4">
-                            💫 Trouble Shooting
-                        </h3>
+                    <DetailSection title="💫 Trouble Shooting">
                         <div className="flex flex-col gap-1">
                             {(project.troubleShooting || []).map(
                                 (trouble, index) => (
@@ -213,13 +201,20 @@ export function ProjectDetailModal({
                                 )
                             )}
                         </div>
-                    </div>
+                    </DetailSection>
 
                     {project.screenshots && (
-                        <div>
-                            <h3 className="text-2xl font-bold mt-2 mb-4">
-                                💻 작업 화면
-                            </h3>
+                        <DetailSection
+                            title="💻 작업 화면"
+                            subtitle={
+                                <>
+                                    이미지 클릭 시 크게 볼 수 있습니다.
+                                    (작업화면이 현재와 다를 수 있습니다.)
+                                    <br />* 저작권 이슈가 있는 경우 첨부하지
+                                    않았습니다.
+                                </>
+                            }
+                        >
                             <div className="grid grid-cols-3 gap-3 max-xl:grid-cols-2">
                                 {project.screenshots.map(
                                     (screenshot, index) => (
@@ -244,7 +239,7 @@ export function ProjectDetailModal({
                                     )
                                 )}
                             </div>
-                        </div>
+                        </DetailSection>
                     )}
                 </section>
             </section>
