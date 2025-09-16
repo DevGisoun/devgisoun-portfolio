@@ -1,12 +1,11 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { X, Github, ExternalLink } from 'lucide-react';
-import { type Project } from '@/data';
-import { ExpandableSection } from '@/components/sections/ExpandableSection';
-import { BaseModal } from '@/components/modals/BaseModal';
-import { DetailSection } from '@/components/sections/DetailSection';
+import { Badge } from '../ui/badge'; // 경로 수정
+import { type Project } from '../../data'; // 경로 수정
+import { ExpandableSection } from '../sections/ExpandableSection'; // 경로 수정
+import { BaseModal } from './BaseModal'; // 경로 수정
+import { DetailSection } from '../sections/DetailSection'; // 경로 수정
+import { FloatingActionButton } from '../buttons/FloatingActionButton'; // 경로 수정
 
 interface ProjectDetailModalProps {
     project: Project;
@@ -22,50 +21,11 @@ export function ProjectDetailModal({
     return (
         <BaseModal isOpen={isOpen} onClose={onClose}>
             <section className="relative w-full mx-auto bg-white pb-10 min-h-screen h-auto max-md:h-auto z-[61]">
-                {/* Floating Action Buttons */}
-                <div className="fixed top-10 right-[3rem] flex flex-col items-center gap-5 z-[62] max-md:sticky max-md:flex-row-reverse max-md:justify-between max-md:top-0 max-md:right-0 max-md:bg-white max-md:backdrop-blur-sm max-md:px-3 max-md:py-2 max-md:border-solid max-md:border-b max-md:border-gray-300">
-                    <Button
-                        onClick={onClose}
-                        className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-600 p-0"
-                        variant="ghost"
-                    >
-                        <X className="h-5 w-5" />
-                    </Button>
-                    <div className="flex flex-col gap-5 max-md:flex-row max-md:gap-4">
-                        {project.githubUrl && (
-                            <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="GitHub"
-                                className="relative flex flex-col items-center justify-center gap-1 px-3 w-full group max-md:px-0"
-                            >
-                                <div className="w-[47px] h-[47px] flex items-center justify-center bg-white border border-gray-300 rounded-full max-md:w-[37px] max-md:h-[37px]">
-                                    <Github className="h-5 w-5 max-md:h-4 max-md:w-4" />
-                                </div>
-                                <span className="text-white text-xs font-medium max-md:text-black max-md:hidden">
-                                    GitHub
-                                </span>
-                            </a>
-                        )}
-                        {project.deployUrl && (
-                            <a
-                                href={project.deployUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="배포 링크"
-                                className="relative flex flex-col items-center justify-center gap-1 px-3 w-full group max-md:px-0"
-                            >
-                                <div className="w-[47px] h-[47px] flex items-center justify-center bg-white border border-gray-300 rounded-full max-md:w-[37px] max-md:h-[37px]">
-                                    <ExternalLink className="h-5 w-5 max-md:h-4 max-md:w-4" />
-                                </div>
-                                <span className="text-white text-xs font-medium max-md:text-black max-md:hidden">
-                                    배포 링크
-                                </span>
-                            </a>
-                        )}
-                    </div>
-                </div>
+                <FloatingActionButton
+                    onClose={onClose}
+                    githubUrl={project.githubUrl}
+                    deployUrl={project.deployUrl}
+                />
 
                 {/* Project Header */}
                 <section className="relative flex flex-col items-center z-[1] p-10 before:block before:absolute before:top-0 before:left-0 before:w-full before:bg-[#77D1FD] before:h-[70%] before:z-[-1] after:block after:absolute after:top-0 after:left-0 after:w-full after:h-[70%] after:bg-gradient-to-t after:from-black/30 after:z-[-1]">
