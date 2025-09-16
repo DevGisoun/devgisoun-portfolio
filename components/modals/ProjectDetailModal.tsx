@@ -2,9 +2,10 @@
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { X, Github, ExternalLink, ChevronRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { X, Github, ExternalLink } from 'lucide-react';
 import { type Project } from '@/data';
+import { ExpandableSection } from '../sections/ExpandableSection'; // 경로 수정
+import { BaseModal } from './BaseModal'; // 경로 수정
 
 interface ProjectDetailModalProps {
     project: Project;
@@ -17,54 +18,11 @@ export function ProjectDetailModal({
     isOpen,
     onClose,
 }: ProjectDetailModalProps) {
-    const [expandedSections, setExpandedSections] = useState<{
-        [key: string]: boolean;
-    }>({});
-
-    useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                onClose();
-            }
-        };
-
-        if (isOpen) {
-            document.addEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'hidden';
-        }
-
-        return () => {
-            document.removeEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'unset';
-        };
-    }, [isOpen, onClose]);
-
-    const toggleSection = (sectionKey: string) => {
-        setExpandedSections((prev) => ({
-            ...prev,
-            [sectionKey]: !prev[sectionKey],
-        }));
-    };
-
-    if (!isOpen) return null;
-
-    const handleOverlayClick = (e: React.MouseEvent) => {
-        if (e.target === e.currentTarget) {
-            onClose();
-        }
-    };
-
     return (
-        <div className="fixed inset-0 z-[60] overflow-y-auto py-10 px-40 max-md:px-0 max-md:py-0">
-            <div
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[59]"
-                onClick={handleOverlayClick}
-            />
-
+        <BaseModal isOpen={isOpen} onClose={onClose}>
             <section className="relative w-full mx-auto bg-white pb-10 min-h-screen h-auto max-md:h-auto z-[61]">
                 {/* 우상단 고정 버튼들 */}
                 <div className="fixed top-10 right-[3rem] flex flex-col items-center gap-5 z-[62] max-md:sticky max-md:flex-row-reverse max-md:justify-between max-md:top-0 max-md:right-0 max-md:bg-white max-md:backdrop-blur-sm max-md:px-3 max-md:py-2 max-md:border-solid max-md:border-b max-md:border-gray-300">
-                    {/* 닫기 버튼 */}
                     <Button
                         onClick={onClose}
                         className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-600 p-0"
@@ -72,8 +30,6 @@ export function ProjectDetailModal({
                     >
                         <X className="h-5 w-5" />
                     </Button>
-
-                    {/* 링크 버튼들 */}
                     <div className="flex flex-col gap-5 max-md:flex-row max-md:gap-4">
                         {project.githubUrl && (
                             <a
@@ -113,7 +69,6 @@ export function ProjectDetailModal({
 
                 {/* 상단 헤더 섹션 */}
                 <section className="relative flex flex-col items-center z-[1] p-10 before:block before:absolute before:top-0 before:left-0 before:w-full before:bg-[#77D1FD] before:h-[70%] before:z-[-1] after:block after:absolute after:top-0 after:left-0 after:w-full after:h-[70%] after:bg-gradient-to-t after:from-black/30 after:z-[-1]">
-                    {/* 카테고리 태그들 */}
                     <div className="flex gap-1 mb-4">
                         {project.category?.map((cat) => (
                             <Badge
@@ -124,13 +79,9 @@ export function ProjectDetailModal({
                             </Badge>
                         )) || <></>}
                     </div>
-
-                    {/* 프로젝트 제목 */}
                     <h1 className="text-white text-4xl text-center font-bold mt-2 mb-4">
                         {project.title}
                     </h1>
-
-                    {/* 프로젝트 기간 및 인원 */}
                     <div className="flex gap-5 mb-4">
                         <span className="text-white text-sm">
                             {project.period || ''}
@@ -139,8 +90,6 @@ export function ProjectDetailModal({
                             {project.teamInfo || ''}
                         </span>
                     </div>
-
-                    {/* 대표 이미지 */}
                     <div className="bg-white border-gray-300 border-[0.0625rem] p-3 w-[calc(100vw-60vw)] rounded-[2.125rem] max-md:w-[calc(100vw-10vw)]">
                         <img
                             src={project.thumbnail}
@@ -159,14 +108,12 @@ export function ProjectDetailModal({
 
                 {/* 콘텐츠 섹션 */}
                 <section className="px-[20%] pb-10 flex flex-col gap-10 text-base max-md:px-[5%]">
-                    {/* 프로젝트 소개 */}
                     <div className="text-center border-b border-gray-300 pb-10">
                         <p className="leading-relaxed">
                             {project.detailedDescription || '프로젝트 소개'}
                         </p>
                     </div>
 
-                    {/* 주요 기능 및 특징 */}
                     <div>
                         <h3 className="text-2xl font-bold mt-2 mb-4">
                             🔍 주요 기능 및 특징
@@ -183,51 +130,25 @@ export function ProjectDetailModal({
                         </ul>
                     </div>
 
-                    {/* 사용 기술 및 언어 */}
                     <div>
                         <h3 className="text-2xl font-bold mt-2 mb-4">
                             🛠️ 사용 기술 및 언어
-                            <p className="text-sm font-medium text-gray-600">
-                                클릭 시 세부 내용을 확인 할 수 있습니다.
-                            </p>
                         </h3>
                         <div className="flex flex-col gap-1">
                             {project.tech.map((tech) => (
-                                <div
+                                <ExpandableSection
                                     key={tech}
-                                    className="flex flex-col cursor-pointer"
+                                    title={<p>{tech}</p>}
                                 >
-                                    <div
-                                        className="flex gap-2 items-center bg-gray-100 py-2 px-3 font-medium transition-all hover:bg-gray-200"
-                                        onClick={() =>
-                                            toggleSection(`tech-${tech}`)
-                                        }
-                                    >
-                                        <ChevronRight
-                                            className={`h-2 w-2 transition-transform ${
-                                                expandedSections[`tech-${tech}`]
-                                                    ? 'rotate-90'
-                                                    : ''
-                                            }`}
-                                        />
-                                        <p className="text-base flex-1">
-                                            {tech}
-                                        </p>
-                                    </div>
-                                    {expandedSections[`tech-${tech}`] && (
-                                        <div className="py-2 px-3 bg-gray-50">
-                                            <p className="text-sm text-gray-600">
-                                                {tech}를 활용하여 프로젝트를
-                                                구현했습니다.
-                                            </p>
-                                        </div>
-                                    )}
-                                </div>
+                                    <p className="text-sm text-gray-600">
+                                        {tech}를 활용하여 프로젝트를
+                                        구현했습니다.
+                                    </p>
+                                </ExpandableSection>
                             ))}
                         </div>
                     </div>
 
-                    {/* 작업 기여도 */}
                     <div>
                         <h3 className="text-2xl font-bold mt-2 mb-4">
                             ✨ 작업 기여도
@@ -235,63 +156,32 @@ export function ProjectDetailModal({
                         <div className="flex flex-col gap-1">
                             {(project.contributions || []).map(
                                 (contribution, index) => (
-                                    <div key={index} className="flex flex-col">
-                                        <div
-                                            className="flex gap-2 items-center bg-gray-100 py-2 px-3 font-medium transition-all hover:bg-gray-200 cursor-pointer"
-                                            onClick={() =>
-                                                toggleSection(
-                                                    `contrib-${index}`
+                                    <ExpandableSection
+                                        key={index}
+                                        title={<p>{contribution.title}</p>}
+                                        hasDetails={
+                                            !!contribution.details &&
+                                            contribution.details.length > 0
+                                        }
+                                    >
+                                        <ul className="flex flex-col gap-3">
+                                            {contribution.details?.map(
+                                                (detail, detailIndex) => (
+                                                    <li
+                                                        key={detailIndex}
+                                                        className="relative flex gap-1 pl-3 before:absolute before:w-1 before:h-1 before:bg-black before:block before:rounded-full before:left-0 before:top-[0.625rem]"
+                                                    >
+                                                        <p>{detail}</p>
+                                                    </li>
                                                 )
-                                            }
-                                        >
-                                            {contribution.details && (
-                                                <ChevronRight
-                                                    className={`h-2 w-2 transition-transform ${
-                                                        expandedSections[
-                                                            `contrib-${index}`
-                                                        ]
-                                                            ? 'rotate-90'
-                                                            : ''
-                                                    }`}
-                                                />
                                             )}
-                                            <p className="text-base flex-1">
-                                                {contribution.title}
-                                            </p>
-                                        </div>
-                                        {contribution.details &&
-                                            expandedSections[
-                                                `contrib-${index}`
-                                            ] && (
-                                                <div className="py-2 px-3">
-                                                    <ul className="flex flex-col gap-3">
-                                                        {contribution.details.map(
-                                                            (
-                                                                detail,
-                                                                detailIndex
-                                                            ) => (
-                                                                <li
-                                                                    key={
-                                                                        detailIndex
-                                                                    }
-                                                                    className="relative flex gap-1 pl-3 before:absolute before:w-1 before:h-1 before:bg-black before:block before:rounded-full before:left-0 before:top-[0.625rem]"
-                                                                >
-                                                                    <p>
-                                                                        {detail}
-                                                                    </p>
-                                                                </li>
-                                                            )
-                                                        )}
-                                                    </ul>
-                                                </div>
-                                            )}
-                                    </div>
+                                        </ul>
+                                    </ExpandableSection>
                                 )
                             )}
                         </div>
                     </div>
 
-                    {/* 트러블 슈팅 */}
                     <div>
                         <h3 className="text-2xl font-bold mt-2 mb-4">
                             💫 Trouble Shooting
@@ -299,68 +189,36 @@ export function ProjectDetailModal({
                         <div className="flex flex-col gap-1">
                             {(project.troubleShooting || []).map(
                                 (trouble, index) => (
-                                    <div key={index} className="flex flex-col">
-                                        <div
-                                            className="flex gap-2 items-center bg-gray-100 py-2 px-3 font-medium transition-all hover:bg-gray-200 cursor-pointer"
-                                            onClick={() =>
-                                                toggleSection(
-                                                    `trouble-${index}`
+                                    <ExpandableSection
+                                        key={index}
+                                        title={<p>{trouble.title}</p>}
+                                        hasDetails={
+                                            !!trouble.details &&
+                                            trouble.details.length > 0
+                                        }
+                                    >
+                                        <ul className="flex flex-col gap-3">
+                                            {trouble.details.map(
+                                                (detail, detailIndex) => (
+                                                    <li
+                                                        key={detailIndex}
+                                                        className="relative flex gap-1 pl-3 before:absolute before:w-1 before:h-1 before:bg-black before:block before:rounded-full before:left-0 before:top-[0.625rem]"
+                                                    >
+                                                        <p>{detail}</p>
+                                                    </li>
                                                 )
-                                            }
-                                        >
-                                            <ChevronRight
-                                                className={`h-2 w-2 transition-transform ${
-                                                    expandedSections[
-                                                        `trouble-${index}`
-                                                    ]
-                                                        ? 'rotate-90'
-                                                        : ''
-                                                }`}
-                                            />
-                                            <p className="text-base flex-1">
-                                                {trouble.title}
-                                            </p>
-                                        </div>
-                                        {expandedSections[
-                                            `trouble-${index}`
-                                        ] && (
-                                            <div className="py-2 px-3">
-                                                <ul className="flex flex-col gap-3">
-                                                    {trouble.details.map(
-                                                        (
-                                                            detail,
-                                                            detailIndex
-                                                        ) => (
-                                                            <li
-                                                                key={
-                                                                    detailIndex
-                                                                }
-                                                                className="relative flex gap-1 pl-3 before:absolute before:w-1 before:h-1 before:bg-black before:block before:rounded-full before:left-0 before:top-[0.625rem]"
-                                                            >
-                                                                <p>{detail}</p>
-                                                            </li>
-                                                        )
-                                                    )}
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </div>
+                                            )}
+                                        </ul>
+                                    </ExpandableSection>
                                 )
                             )}
                         </div>
                     </div>
 
-                    {/* 작업 화면 */}
                     {project.screenshots && (
                         <div>
                             <h3 className="text-2xl font-bold mt-2 mb-4">
                                 💻 작업 화면
-                                <p className="text-sm font-medium text-gray-600">
-                                    이미지 클릭 시 크게 볼 수 있습니다.
-                                    (작업화면이 현재와 다를 수 있습니다.)
-                                    <br />* 저작권 이슈가 있는 경우 첨부하지
-                                    않았습니다.
-                                </p>
                             </h3>
                             <div className="grid grid-cols-3 gap-3 max-xl:grid-cols-2">
                                 {project.screenshots.map(
@@ -390,6 +248,6 @@ export function ProjectDetailModal({
                     )}
                 </section>
             </section>
-        </div>
+        </BaseModal>
     );
 }
