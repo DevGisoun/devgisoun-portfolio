@@ -1,22 +1,13 @@
-import { Badge } from "@/components/ui/badge";
-import { Code } from "lucide-react";
-
-const skills = [
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Python",
-    "JavaScript",
-    "TailwindCSS",
-    "PostgreSQL",
-    "MongoDB",
-    "AWS",
-    "Docker",
-    "Git",
-];
+import { Badge } from '@/components/ui/badge';
+import { Code } from 'lucide-react';
+import { getSkillNames, getSkillsByCategory } from '@/data';
 
 export function SkillsSection() {
+    const skillNames = getSkillNames();
+    // 필요시 카테고리별로 분류하여 표시할 수도 있습니다
+    // const frontendSkills = getSkillsByCategory('frontend');
+    // const backendSkills = getSkillsByCategory('backend');
+
     return (
         <section id="skills" className="py-20 bg-muted/20">
             <div className="container mx-auto px-4">
@@ -32,14 +23,14 @@ export function SkillsSection() {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-                    {skills.map((skill, index) => (
+                    {skillNames.map((skill, index) => (
                         <Badge
                             key={skill}
                             variant="secondary"
                             className="px-4 py-2 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer transform hover:scale-105"
                             style={{
                                 animationDelay: `${index * 0.1}s`,
-                                animation: "fadeInUp 0.6s ease forwards",
+                                animation: 'fadeInUp 0.6s ease forwards',
                             }}
                         >
                             {skill}

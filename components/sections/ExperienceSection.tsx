@@ -1,30 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Briefcase } from "lucide-react";
-
-const experiences = [
-    {
-        company: "TechCorp Inc.",
-        position: "Senior Full Stack Developer",
-        period: "2022 - Present",
-        description:
-            "Lead development of web applications serving 100K+ users. Architected microservices and improved system performance by 40%.",
-    },
-    {
-        company: "StartupXYZ",
-        position: "Frontend Developer",
-        period: "2020 - 2022",
-        description:
-            "Built responsive web applications using React and TypeScript. Collaborated with design team to implement pixel-perfect UIs.",
-    },
-    {
-        company: "WebDev Agency",
-        position: "Junior Developer",
-        period: "2019 - 2020",
-        description:
-            "Developed client websites using modern web technologies. Learned best practices in code quality and project management.",
-    },
-];
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { GraduationCap, Briefcase, MapPin } from 'lucide-react';
+import { experiences } from '@/data';
 
 export function ExperienceSection() {
     return (
@@ -43,7 +20,7 @@ export function ExperienceSection() {
                 <div className="max-w-4xl mx-auto space-y-6">
                     {experiences.map((exp) => (
                         <Card
-                            key={exp.company}
+                            key={`${exp.company}-${exp.position}`}
                             className="hover:shadow-md transition-shadow duration-300"
                         >
                             <CardContent className="p-6">
@@ -52,17 +29,69 @@ export function ExperienceSection() {
                                         <h3 className="text-xl font-semibold text-foreground mb-2">
                                             {exp.position}
                                         </h3>
-                                        <div className="flex items-center gap-2 text-primary font-medium mb-3">
+                                        <div className="flex items-center gap-2 text-primary font-medium mb-2">
                                             <Briefcase className="h-4 w-4" />
                                             {exp.company}
                                         </div>
-                                        <p className="text-muted-foreground leading-relaxed">
+                                        {exp.location && (
+                                            <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                                                <MapPin className="h-4 w-4" />
+                                                {exp.location}
+                                            </div>
+                                        )}
+                                        <p className="text-muted-foreground leading-relaxed mb-4">
                                             {exp.description}
                                         </p>
+
+                                        {/* 주요 성과 */}
+                                        {exp.achievements &&
+                                            exp.achievements.length > 0 && (
+                                                <div className="mb-4">
+                                                    <h4 className="text-sm font-semibold text-foreground mb-2">
+                                                        주요 성과
+                                                    </h4>
+                                                    <ul className="space-y-1">
+                                                        {exp.achievements.map(
+                                                            (
+                                                                achievement,
+                                                                index
+                                                            ) => (
+                                                                <li
+                                                                    key={index}
+                                                                    className="text-sm text-muted-foreground flex items-start"
+                                                                >
+                                                                    <span className="w-1 h-1 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                                                    {
+                                                                        achievement
+                                                                    }
+                                                                </li>
+                                                            )
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                            )}
+
+                                        {/* 사용 기술 */}
+                                        {exp.technologies &&
+                                            exp.technologies.length > 0 && (
+                                                <div className="flex flex-wrap gap-2">
+                                                    {exp.technologies.map(
+                                                        (tech) => (
+                                                            <Badge
+                                                                key={tech}
+                                                                variant="outline"
+                                                                className="text-xs"
+                                                            >
+                                                                {tech}
+                                                            </Badge>
+                                                        )
+                                                    )}
+                                                </div>
+                                            )}
                                     </div>
                                     <Badge
                                         variant="outline"
-                                        className="md:ml-4 whitespace-nowrap"
+                                        className="md:ml-4 whitespace-nowrap self-start"
                                     >
                                         {exp.period}
                                     </Badge>

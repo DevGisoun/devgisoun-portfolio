@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { personalInfo } from '@/data';
 
 export function Header() {
     const scrollToSection = (sectionId: string) => {
@@ -19,7 +20,7 @@ export function Header() {
                 <div className="flex items-center justify-between h-16">
                     {/* 좌측: 닉네임 */}
                     <div className="font-bold text-xl text-foreground">
-                        DevGisoun
+                        {personalInfo.nickname}
                     </div>
 
                     {/* 우측: 네비게이션 버튼들 */}
