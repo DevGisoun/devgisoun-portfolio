@@ -6,6 +6,7 @@ import { ExpandableSection } from '../sections/ExpandableSection'; // 경로 수
 import { BaseModal } from './BaseModal'; // 경로 수정
 import { DetailSection } from '../sections/DetailSection'; // 경로 수정
 import { FloatingActionButton } from '../buttons/FloatingActionButton'; // 경로 수정
+import { ProjectScreenshot } from '../project/ProjectScreenshot'; // 경로 수정
 
 interface ProjectDetailModalProps {
     project: Project;
@@ -175,30 +176,9 @@ export function ProjectDetailModal({
                                 </>
                             }
                         >
-                            <div className="grid grid-cols-3 gap-3 max-xl:grid-cols-2">
-                                {project.screenshots.map(
-                                    (screenshot, index) => (
-                                        <div
-                                            key={index}
-                                            className="cursor-pointer flex flex-col gap-1 items-center hover:opacity-80"
-                                        >
-                                            <img
-                                                src={screenshot.url}
-                                                alt="프로젝트 구현 화면"
-                                                className="border border-gray-300"
-                                                onError={(e) => {
-                                                    (
-                                                        e.target as HTMLImageElement
-                                                    ).src = `https://placehold.co/400x300/f1f5f9/64748b?text=Screenshot`;
-                                                }}
-                                            />
-                                            <p className="text-sm text-gray-600 max-md:text-xs">
-                                                {screenshot.caption}
-                                            </p>
-                                        </div>
-                                    )
-                                )}
-                            </div>
+                            <ProjectScreenshot
+                                screenshots={project.screenshots}
+                            />
                         </DetailSection>
                     )}
                 </section>
