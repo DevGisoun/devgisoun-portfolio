@@ -3,6 +3,7 @@ export interface Project {
     description: string;
     tech: string[];
     thumbnail: string;
+    color?: string;
     category?: string[];
     period?: string;
     teamInfo?: string;

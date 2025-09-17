@@ -1,12 +1,12 @@
 'use client';
 
-import { Badge } from '../ui/badge'; // 경로 수정
-import { type Project } from '../../data'; // 경로 수정
-import { ExpandableSection } from '../sections/ExpandableSection'; // 경로 수정
-import { BaseModal } from './BaseModal'; // 경로 수정
-import { DetailSection } from '../sections/DetailSection'; // 경로 수정
-import { FloatingActionButton } from '../buttons/FloatingActionButton'; // 경로 수정
-import { ProjectScreenshot } from '../project/ProjectScreenshot'; // 경로 수정
+import { Badge } from '../ui/badge';
+import { type Project } from '../../data';
+import { ExpandableSection } from '../sections/ExpandableSection';
+import { BaseModal } from './BaseModal';
+import { DetailSection } from '../sections/DetailSection';
+import { FloatingActionButton } from '../buttons/FloatingActionButton';
+import { ProjectScreenshot } from '../project/ProjectScreenshot';
 
 interface ProjectDetailModalProps {
     project: Project;
@@ -19,6 +19,9 @@ export function ProjectDetailModal({
     isOpen,
     onClose,
 }: ProjectDetailModalProps) {
+    // 프로젝트 색상이 없으면 기본 색상 사용
+    const headerColor = project.color || '#D9D9D9';
+
     return (
         <BaseModal isOpen={isOpen} onClose={onClose}>
             <section className="relative w-full mx-auto bg-white pb-10 min-h-screen h-auto max-md:h-auto z-[61]">
@@ -29,7 +32,20 @@ export function ProjectDetailModal({
                 />
 
                 {/* Project Header */}
-                <section className="relative flex flex-col items-center z-[1] p-10 before:block before:absolute before:top-0 before:left-0 before:w-full before:bg-[#77D1FD] before:h-[70%] before:z-[-1] after:block after:absolute after:top-0 after:left-0 after:w-full after:h-[70%] after:bg-gradient-to-t after:from-black/30 after:z-[-1]">
+                <section
+                    className="relative flex flex-col items-center z-[1] p-10 after:block after:absolute after:top-0 after:left-0 after:w-full after:h-[70%] after:bg-gradient-to-t after:from-black/30 after:z-[-1]"
+                    // 인라인 스타일로 동적 배경색 적용
+                    style={
+                        {
+                            '--header-bg-color': headerColor,
+                        } as React.CSSProperties
+                    }
+                >
+                    {/* ::before 의사 요소를 직접 제어하기 위해 div 추가 */}
+                    <div
+                        className="absolute top-0 left-0 w-full h-[70%] z-[-2]"
+                        style={{ backgroundColor: headerColor }}
+                    />
                     <div className="flex gap-1 mb-4">
                         {project.category?.map((cat) => (
                             <Badge
