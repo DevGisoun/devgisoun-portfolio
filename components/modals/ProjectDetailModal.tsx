@@ -1,12 +1,12 @@
 'use client';
 
-import { Badge } from '../ui/badge';
-import { type Project } from '../../data';
-import { ExpandableSection } from '../sections/ExpandableSection';
-import { BaseModal } from './BaseModal';
-import { DetailSection } from '../sections/DetailSection';
-import { FloatingActionButton } from '../buttons/FloatingActionButton';
-import { ProjectScreenshot } from '../project/ProjectScreenshot';
+import { Badge } from '@/components/ui/badge';
+import { type Project } from '@/data';
+import { ExpandableSection } from '@/components/sections/ExpandableSection';
+import { BaseModal } from '@/components/modals/BaseModal';
+import { DetailSection } from '@/components/sections/DetailSection';
+import { FloatingActionButton } from '@/components/buttons/FloatingActionButton';
+import { ProjectScreenshot } from '@/components/project/ProjectScreenshot';
 
 interface ProjectDetailModalProps {
     project: Project;
@@ -19,33 +19,30 @@ export function ProjectDetailModal({
     isOpen,
     onClose,
 }: ProjectDetailModalProps) {
-    // 프로젝트 색상이 없으면 기본 색상 사용
-    const headerColor = project.color || '#D9D9D9';
+    // 기본 z-index 값을 60으로 설정
+    const baseZIndex = 60;
 
     return (
-        <BaseModal isOpen={isOpen} onClose={onClose}>
-            <section className="relative w-full mx-auto bg-white pb-10 min-h-screen h-auto max-md:h-auto z-[61]">
+        <BaseModal isOpen={isOpen} onClose={onClose} zIndex={baseZIndex}>
+            <section
+                className="relative w-full mx-auto bg-white pb-10 min-h-screen h-auto max-md:h-auto"
+                style={{ zIndex: baseZIndex + 1 }} // 콘텐츠 영역 z-index 설정
+            >
                 <FloatingActionButton
                     onClose={onClose}
                     githubUrl={project.githubUrl}
                     deployUrl={project.deployUrl}
+                    zIndex={baseZIndex + 2} // 버튼 z-index 설정
                 />
 
                 {/* Project Header */}
-                <section
-                    className="relative flex flex-col items-center z-[1] p-10 after:block after:absolute after:top-0 after:left-0 after:w-full after:h-[70%] after:bg-gradient-to-t after:from-black/30 after:z-[-1]"
-                    // 인라인 스타일로 동적 배경색 적용
-                    style={
-                        {
-                            '--header-bg-color': headerColor,
-                        } as React.CSSProperties
-                    }
-                >
-                    {/* ::before 의사 요소를 직접 제어하기 위해 div 추가 */}
+                <section className="relative flex flex-col items-center z-10 p-10 after:block after:absolute after:top-0 after:left-0 after:w-full after:h-[70%] after:bg-gradient-to-t after:from-black/30 after:-z-10">
+                    {/* 동적 배경색을 위한 div 추가 */}
                     <div
-                        className="absolute top-0 left-0 w-full h-[70%] z-[-2]"
-                        style={{ backgroundColor: headerColor }}
-                    />
+                        className="absolute top-0 left-0 w-full h-[70%] -z-20"
+                        style={{ backgroundColor: project.color || '#77D1FD' }}
+                    ></div>
+
                     <div className="flex gap-1 mb-4">
                         {project.category?.map((cat) => (
                             <Badge

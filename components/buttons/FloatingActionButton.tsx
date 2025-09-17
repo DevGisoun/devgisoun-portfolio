@@ -1,12 +1,16 @@
 'use client';
 
-import { Button } from '../ui/button'; // 경로 수정
+import { Button } from '@/components/ui/button';
 import { X, Github, ExternalLink } from 'lucide-react';
 
 interface FloatingActionButtonProps {
     onClose: () => void;
     githubUrl?: string;
     deployUrl?: string;
+    /**
+     * 버튼 그룹의 z-index 값을 직접 설정할 수 있도록 prop 추가
+     */
+    zIndex?: number;
 }
 
 /**
@@ -14,14 +18,19 @@ interface FloatingActionButtonProps {
  * @param onClose - 닫기 버튼 클릭 시 호출될 함수
  * @param githubUrl - GitHub 링크 (optional)
  * @param deployUrl - 배포 사이트 링크 (optional)
+ * @param zIndex - 버튼 그룹의 z-index 값 (optional)
  */
 export function FloatingActionButton({
     onClose,
     githubUrl,
     deployUrl,
+    zIndex = 62, // 기본 z-index
 }: FloatingActionButtonProps) {
     return (
-        <div className="fixed top-10 right-[3rem] flex flex-col items-center gap-5 z-[62] max-md:sticky max-md:flex-row-reverse max-md:justify-between max-md:top-0 max-md:right-0 max-md:bg-white max-md:backdrop-blur-sm max-md:px-3 max-md:py-2 max-md:border-solid max-md:border-b max-md:border-gray-300">
+        <div
+            className="fixed top-10 right-[3rem] flex flex-col items-center gap-5 max-md:sticky max-md:flex-row-reverse max-md:justify-between max-md:top-0 max-md:right-0 max-md:bg-white max-md:backdrop-blur-sm max-md:px-3 max-md:py-2 max-md:border-solid max-md:border-b max-md:border-gray-300"
+            style={{ zIndex }} // z-index를 동적으로 설정
+        >
             <Button
                 onClick={onClose}
                 className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-600 p-0"
