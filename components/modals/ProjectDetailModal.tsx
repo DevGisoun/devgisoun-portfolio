@@ -23,6 +23,34 @@ export function ProjectDetailModal({
     // 기본 z-index 값을 60으로 설정
     const baseZIndex = 60;
 
+    const renderTroubleShootingDetail = (detail: string) => {
+        if (detail.startsWith('[문제점]')) {
+            return (
+                <>
+                    <Badge className="bg-red-500 text-white w-16 justify-center shrink-0">
+                        문제점
+                    </Badge>
+                    <p className="flex-1">
+                        {detail.replace('[문제점]', '').trim()}
+                    </p>
+                </>
+            );
+        }
+        if (detail.startsWith('[해결]')) {
+            return (
+                <>
+                    <Badge className="bg-green-600 text-white w-16 justify-center shrink-0">
+                        해결
+                    </Badge>
+                    <p className="flex-1">
+                        {detail.replace('[해결]', '').trim()}
+                    </p>
+                </>
+            );
+        }
+        return <p>{detail}</p>;
+    };
+
     return (
         <BaseModal isOpen={isOpen} onClose={onClose} zIndex={baseZIndex}>
             <section
@@ -102,7 +130,6 @@ export function ProjectDetailModal({
                         </ul>
                     </DetailSection>
 
-                    {/* '사용 기술 및 언어' 섹션을 InteractiveBadge 컴포넌트로 변경 */}
                     <DetailSection title="🛠️ 사용 기술 및 언어">
                         <div className="flex flex-wrap gap-2">
                             {project.tech.map((tech) => (
@@ -163,9 +190,11 @@ export function ProjectDetailModal({
                                                 (detail, detailIndex) => (
                                                     <li
                                                         key={detailIndex}
-                                                        className="relative flex gap-1 pl-3 before:absolute before:w-1 before:h-1 before:bg-black before:block before:rounded-full before:left-0 before:top-[0.625rem]"
+                                                        className="flex items-start gap-2"
                                                     >
-                                                        <p>{detail}</p>
+                                                        {renderTroubleShootingDetail(
+                                                            detail
+                                                        )}
                                                     </li>
                                                 )
                                             )}
