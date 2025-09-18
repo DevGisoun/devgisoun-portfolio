@@ -1,6 +1,6 @@
-import { Badge } from '@/components/ui/badge';
 import { Code } from 'lucide-react';
 import { getSkillNames, sectionHeadings } from '@/data';
+import { InteractiveBadge } from '@/components/badges/InteractiveBadge';
 
 export function SkillsSection() {
     const skillNames = getSkillNames();
@@ -20,17 +20,16 @@ export function SkillsSection() {
 
                 <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
                     {skillNames.map((skill, index) => (
-                        <Badge
+                        <InteractiveBadge
                             key={skill}
-                            variant="secondary"
-                            className="px-4 py-2 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer transform hover:scale-105"
+                            className="text-sm font-medium"
                             style={{
                                 animationDelay: `${index * 0.1}s`,
                                 animation: 'fadeInUp 0.6s ease forwards',
                             }}
                         >
                             {skill}
-                        </Badge>
+                        </InteractiveBadge>
                     ))}
                 </div>
             </div>

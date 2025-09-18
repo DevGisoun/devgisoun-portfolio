@@ -7,6 +7,7 @@ import { BaseModal } from '@/components/modals/BaseModal';
 import { DetailSection } from '@/components/sections/DetailSection';
 import { FloatingActionButton } from '@/components/buttons/FloatingActionButton';
 import { ProjectScreenshot } from '@/components/project/ProjectScreenshot';
+import { InteractiveBadge } from '@/components/badges/InteractiveBadge';
 
 interface ProjectDetailModalProps {
     project: Project;
@@ -101,18 +102,16 @@ export function ProjectDetailModal({
                         </ul>
                     </DetailSection>
 
+                    {/* '사용 기술 및 언어' 섹션을 InteractiveBadge 컴포넌트로 변경 */}
                     <DetailSection title="🛠️ 사용 기술 및 언어">
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-wrap gap-2">
                             {project.tech.map((tech) => (
-                                <ExpandableSection
+                                <InteractiveBadge
                                     key={tech}
-                                    title={<p>{tech}</p>}
+                                    className="px-3 py-1 text-sm font-medium"
                                 >
-                                    <p className="text-sm text-gray-600">
-                                        {tech}를 활용하여 프로젝트를
-                                        구현했습니다.
-                                    </p>
-                                </ExpandableSection>
+                                    {tech}
+                                </InteractiveBadge>
                             ))}
                         </div>
                     </DetailSection>
