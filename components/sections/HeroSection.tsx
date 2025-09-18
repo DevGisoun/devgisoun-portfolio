@@ -1,14 +1,23 @@
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { MapPin, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { personalInfo, contactInfo, socialLinks } from '@/data';
+import { personalInfo, socialLinks } from '../../data';
 
 export function HeroSection() {
+    const { totalMonthsOfExperience } = personalInfo;
+    const years = Math.floor(totalMonthsOfExperience / 12);
+    const months = totalMonthsOfExperience % 12;
+
+    const yearText = `${years} year${years > 1 ? 's' : ''}`;
+    const monthText =
+        months > 0 ? ` ${months} month${months > 1 ? 's' : ''}` : '';
+    const experienceText = `${yearText}${monthText} of Experience`;
+
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/5 py-20">
             <div className="container mx-auto px-6 max-w-6xl">
-                <div className="flex flex-col lg:flex-row items-center gap-12">
+                <div className="flex flex-col lg:flex-row items-center gap-6">
                     <div className="flex-1 text-center lg:text-left">
                         <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-6">
                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -26,7 +35,7 @@ export function HeroSection() {
                             입니다
                         </h1>
 
-                        <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
+                        <p className="text-xl text-muted-foreground mb-8">
                             {personalInfo.bio}
                         </p>
 
@@ -55,17 +64,10 @@ export function HeroSection() {
                             ))}
                         </div>
 
-                        <div className="flex items-center gap-6 text-muted-foreground">
-                            <div className="flex items-center gap-2">
-                                <MapPin className="h-4 w-4" />
-                                <span>{contactInfo.location}</span>
-                            </div>
+                        <div className="flex items-center justify-center lg:justify-start gap-6 text-muted-foreground">
                             <div className="flex items-center gap-2">
                                 <Calendar className="h-4 w-4" />
-                                <span>
-                                    {personalInfo.yearsOfExperience}+ Years
-                                    Experience
-                                </span>
+                                <span>{experienceText}</span>
                             </div>
                         </div>
                     </div>

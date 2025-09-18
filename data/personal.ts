@@ -1,19 +1,17 @@
 import { PersonalInfo, ContactInfo } from '@/types';
 
 export const personalInfo: PersonalInfo = {
-    name: '기순',
+    name: '이해찬',
     nickname: 'DevGisoun',
-    title: '풀스택 개발자',
-    bio: '풀스택 개발자로서 사용자 중심의 웹 애플리케이션을 만들고 있습니다. 최신 기술을 활용하여 혁신적인 디지털 경험을 제공하는 것을 목표로 합니다.',
+    title: '기술로 비즈니스 문제를 해결하는 풀스택 개발자',
+    bio: '웹과 모바일의 경계를 넘나들며 기술로 비즈니스 문제를 해결하는 풀스택 개발자입니다.\n사용자 경험 개선과 개발 생산성 향상을 위해 능동적으로 시스템을 개선하고 언제나 새로운 기술을 탐색하는 것을 즐깁니다.',
     avatar: '/profile.jpg',
-    yearsOfExperience: 3,
+    totalMonthsOfExperience: 35,
     availability: true,
 };
 
 export const contactInfo: ContactInfo = {
     email: 'devgisoun@example.com',
-    phone: '+82-10-0000-0000',
-    location: 'Seoul, Korea',
     github: 'https://github.com/devgisoun',
     linkedin: 'https://linkedin.com/in/devgisoun',
     portfolio: 'https://devgisoun.dev',

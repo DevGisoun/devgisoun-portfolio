@@ -42,8 +42,6 @@ export interface Skill {
 
 export interface ContactInfo {
     email: string;
-    phone?: string;
-    location: string;
     github: string;
     linkedin?: string;
     portfolio?: string;
@@ -55,6 +53,6 @@ export interface PersonalInfo {
     title: string;
     bio: string;
     avatar?: string;
-    yearsOfExperience: number;
+    totalMonthsOfExperience: number;
     availability: boolean;
 }
