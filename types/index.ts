@@ -20,9 +20,9 @@ export interface Project {
 export interface Experience {
     company: string;
     position: string;
+    job: string;
     period: string;
     description: string;
-    location?: string;
     achievements?: string[];
     technologies?: string[];
 }

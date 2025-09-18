@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { GraduationCap, Briefcase, MapPin } from 'lucide-react';
+import { GraduationCap, Briefcase, FileText } from 'lucide-react';
 import { experiences, sectionHeadings } from '@/data';
 
 export function ExperienceSection() {
@@ -27,16 +27,16 @@ export function ExperienceSection() {
                                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                                     <div className="flex-1">
                                         <h3 className="text-xl font-semibold text-foreground mb-2">
-                                            {exp.position}
+                                            {exp.company}
                                         </h3>
                                         <div className="flex items-center gap-2 text-primary font-medium mb-2">
                                             <Briefcase className="h-4 w-4" />
-                                            {exp.company}
+                                            {exp.position}
                                         </div>
-                                        {exp.location && (
+                                        {exp.job && (
                                             <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                                                <MapPin className="h-4 w-4" />
-                                                {exp.location}
+                                                <FileText className="h-4 w-4" />
+                                                {exp.job}
                                             </div>
                                         )}
                                         <p className="text-muted-foreground leading-relaxed mb-4">
