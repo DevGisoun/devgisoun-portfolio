@@ -255,12 +255,12 @@ export const projects: Project[] = [
         screenshots: [
             {
                 url: '/projects/wGCS/001.png',
-                caption:
-                    'wGCS 기본 인터페이스 및 임무 경로(Waypoint) 생성 기능',
+                caption: '백엔드 연동을 통한 미션 업로드 기능',
             },
             {
                 url: '/projects/wGCS/002.png',
-                caption: '백엔드 연동을 통한 미션 업로드 기능',
+                caption:
+                    'wGCS 기본 인터페이스 및 임무 경로(Waypoint) 생성 기능',
             },
             {
                 url: '/projects/wGCS/003.png',
