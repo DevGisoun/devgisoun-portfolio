@@ -5,7 +5,7 @@ export const experiences: Experience[] = [
         company: '(주)플렉스랩',
         position: '사원',
         job: '웹 및 앱 풀스택 개발자',
-        period: '20xx - 20xx',
+        period: '2023 - 2025',
         description:
             '연구개발전담부서 사원으로 재직하며 풀스택 개발자로서 웹 기반 에너지 관리 시스템(EnMS)과 AI 기반 학습 플랫폼 앱(PASS)의 신규 구축 프로젝트에 핵심적인 역할을 수행했습니다.',
         achievements: [
@@ -44,7 +44,7 @@ export const experiences: Experience[] = [
         company: '(주)파블로항공',
         position: '주임연구원',
         job: '프론트엔드 개발자',
-        period: '20xx - 20xx',
+        period: '2021 - 2022',
         description:
             '플랫폼팀 주임연구원으로 재직하며 다수의 드론을 동시에 관제하는 웹 관제 플랫폼(wGCS)의 프론트엔드 시스템을 개발했습니다.',
         achievements: [
