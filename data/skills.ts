@@ -3,7 +3,7 @@ import { Skill } from '@/types';
 export const skills: Skill[] = [
     // Frontend
     {
-        name: 'TypeScript',
+        name: 'Flutter',
         category: 'frontend',
         level: 'advanced',
     },
@@ -13,55 +13,87 @@ export const skills: Skill[] = [
         level: 'advanced',
     },
     {
-        name: 'Next.js',
-        category: 'frontend',
-        level: 'advanced',
-    },
-    {
-        name: 'JavaScript',
-        category: 'frontend',
-        level: 'expert',
-    },
-    {
-        name: 'TailwindCSS',
+        name: 'jQuery',
         category: 'frontend',
         level: 'advanced',
     },
 
     // Backend
     {
-        name: 'Node.js',
+        name: 'Spring Boot',
         category: 'backend',
+        level: 'advanced',
+    },
+    {
+        name: 'Nest.js',
+        category: 'backend',
+        level: 'advanced',
+    },
+    {
+        name: 'FastAPI',
+        category: 'backend',
+        level: 'advanced',
+    },
+
+    // Database
+    {
+        name: 'MySQL',
+        category: 'database',
+        level: 'advanced',
+    },
+    {
+        name: 'MariaDB',
+        category: 'database',
+        level: 'advanced',
+    },
+    {
+        name: 'InfluxDB',
+        category: 'database',
+        level: 'advanced',
+    },
+    {
+        name: 'Firebase',
+        category: 'database',
+        level: 'advanced',
+    },
+
+    // Language
+    {
+        name: 'Java',
+        category: 'language',
+        level: 'advanced',
+    },
+    {
+        name: 'TypeScript',
+        category: 'language',
+        level: 'advanced',
+    },
+    {
+        name: 'JavaScript',
+        category: 'language',
         level: 'advanced',
     },
     {
         name: 'Python',
         category: 'language',
-        level: 'intermediate',
-    },
-
-    // Database
-    {
-        name: 'PostgreSQL',
-        category: 'database',
-        level: 'intermediate',
-    },
-    {
-        name: 'MongoDB',
-        category: 'database',
-        level: 'intermediate',
+        level: 'advanced',
     },
 
     // DevOps & Tools
     {
+        name: 'RabbitMQ',
+        category: 'tools',
+        level: 'advanced',
+    },
+    {
         name: 'AWS',
         category: 'devops',
-        level: 'intermediate',
+        level: 'advanced',
     },
     {
         name: 'Docker',
         category: 'devops',
-        level: 'intermediate',
+        level: 'advanced',
     },
     {
         name: 'Git',
