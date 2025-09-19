@@ -5,7 +5,7 @@ export const personalInfo: PersonalInfo = {
     nickname: 'DevGisoun',
     title: '기술로 비즈니스 문제를 해결하는 풀스택 개발자',
     bio: '웹과 모바일의 경계를 넘나들며 기술로 비즈니스 문제를 해결하는 풀스택 개발자입니다.\n사용자 경험 개선과 개발 생산성 향상을 위해 능동적으로 시스템을 개선하고 언제나 새로운 기술을 탐색하는 것을 즐깁니다.',
-    avatar: '/profile.jpg',
+    avatar: '/avatar.jpg',
     totalMonthsOfExperience: 35,
     availability: true,
 };

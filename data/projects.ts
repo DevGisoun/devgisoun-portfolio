@@ -18,7 +18,7 @@ export const projects: Project[] = [
             'MyBatis',
             'RabbitMQ',
         ],
-        thumbnail: '1.png',
+        thumbnail: '/projects/EnMS/thumbnail.png',
         category: ['풀스택', 'B2B', '데이터 시각화'],
         detailedDescription:
             '다양한 산업 시설에서 발생하는 에너지 데이터를 실시간으로 수집, 분석, 시각화하여 에너지 효율 최적화 및 비용 절감을 목표로 하는 웹 기반 에너지 관리 시스템(EnMS) 신규 구축 프로젝트입니다. 백엔드 아키텍처 설계부터 데이터 처리 파이프라인 구축, 그리고 jQuery 및 React 기반의 프론트엔드 개발까지 전체 시스템의 핵심 개발을 주도했습니다.',
@@ -73,6 +73,32 @@ export const projects: Project[] = [
                 ],
             },
         ],
+        screenshots: [
+            {
+                url: '/projects/EnMS/002.png',
+                caption: 'React Flow 기반의 동적 에너지맵(계통도)',
+            },
+            {
+                url: '/projects/EnMS/004.png',
+                caption: '사용자 맞춤형 대시보드 아이템 관리 페이지',
+            },
+            {
+                url: '/projects/EnMS/001.png',
+                caption: 'eCharts와 InfluxDB를 활용한 실시간 데이터 조회 차트',
+            },
+            {
+                url: '/projects/EnMS/005.png',
+                caption: 'LCA 제품 단위 배출량 상세 작성 폼',
+            },
+            {
+                url: '/projects/EnMS/003.png',
+                caption: '에너지 데이터 관리를 위한 태그 관리 페이지',
+            },
+            {
+                url: '/projects/EnMS/006.png',
+                caption: 'InfluxDB 대시보드를 통한 실시간 태그 값 모니터링',
+            },
+        ],
     },
     {
         title: 'PASS - AI 기반 9급 공무원 시험 학습 플랫폼',
@@ -92,7 +118,7 @@ export const projects: Project[] = [
             'Firebase',
             'Docker',
         ],
-        thumbnail: '1.png',
+        thumbnail: '/projects/PASS/thumbnail.png',
         category: ['풀스택', 'B2C', '모바일 앱', 'AI'],
         detailedDescription:
             'Flutter 기반의 크로스플랫폼(iOS/Android) 모바일 앱 서비스로, AI가 학습자의 취약점을 분석하고 미래 정오답률을 예측하여 개인화된 학습 경험을 제공하는 9급 공무원 시험 대비 학습 플랫폼입니다. 기획 초기 단계부터 참여하여 앱(Front-end), 메인 API 서버(Back-end), DKT AI 모델 서빙 서버(AI)의 설계, 개발, 배포, 운영까지 전 과정에 핵심적인 역할을 수행했습니다.',
@@ -141,13 +167,39 @@ export const projects: Project[] = [
                 ],
             },
         ],
+        screenshots: [
+            {
+                url: '/projects/PASS/001.png',
+                caption: '로그인 및 소셜 계정 연동 페이지',
+            },
+            {
+                url: '/projects/PASS/002.png',
+                caption: '메인 학습 탭 및 AI 진단시험 정보',
+            },
+            {
+                url: '/projects/PASS/006.png',
+                caption: "'복습' 탭의 오답노트 기능",
+            },
+            {
+                url: '/projects/PASS/004.png',
+                caption: "'AI 진단시험' 완료 후 결과 확인 페이지",
+            },
+            {
+                url: '/projects/PASS/005.png',
+                caption: 'DKT 모델 기반 학습 성취도 분석 및 시각화',
+            },
+            {
+                url: '/projects/PASS/003.png',
+                caption: '문제 풀이 중 인-텍스트(In-text) 메모 기능',
+            },
+        ],
     },
     {
         title: '웹 관제 플랫폼 wGCS 프론트엔드 개발',
         description:
             '다수의 드론을 동시에 관제하고 임무를 할당하는 웹 기반 관제 시스템(wGCS)의 프론트엔드 개발 프로젝트',
         tech: ['Vue.js', 'CesiumJS', 'JavaScript'],
-        thumbnail: '1.png',
+        thumbnail: '/projects/wGCS/thumbnail.png',
         category: ['프론트엔드', '관제 시스템', '2D/3D 지도'],
         detailedDescription:
             '웹 환경에서 다수의 드론을 동시에 관제하고 임무를 할당하는 wGCS(Web Ground Control System)의 프론트엔드 시스템을 개발했습니다. CesiumJS(2D/3D 지도 라이브러리)를 기반으로 지도 위에 드론의 임무 경로, 안전 비행 구역 등을 설정하고 모니터링하는 기능을 구현했습니다.',
@@ -198,6 +250,21 @@ export const projects: Project[] = [
                     '[문제점] Waypoint 생성, 수정, 삭제, 펜스 그리기 등 지도 위에서 발생하는 모든 마우스 클릭 이벤트가 하나의 Vue 컴포넌트 내에 복잡하게 얽혀 있어 코드 가독성이 떨어지고 기능 추가 및 버그 수정이 매우 어려웠습니다.',
                     '[해결] 지도와 관련된 클릭 이벤트를 역할(경로 제어, 펜스 제어 등)에 따라 별도의 모듈로 분리하는 리팩토링을 진행했습니다. 이를 통해 코드의 응집도를 높이고 재사용성을 확보하여 유지보수성과 확장성을 크게 개선했습니다.',
                 ],
+            },
+        ],
+        screenshots: [
+            {
+                url: '/projects/wGCS/001.png',
+                caption:
+                    'wGCS 기본 인터페이스 및 임무 경로(Waypoint) 생성 기능',
+            },
+            {
+                url: '/projects/wGCS/002.png',
+                caption: '백엔드 연동을 통한 미션 업로드 기능',
+            },
+            {
+                url: '/projects/wGCS/003.png',
+                caption: '안전 비행 구역 설정을 위한 지오펜싱(Geofencing) 기능',
             },
         ],
     },
