@@ -13,7 +13,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from '@/components/ui/alert-dialog'; // AlertDialog import 추가
-import { Award } from 'lucide-react';
+import { Award, HardHatIcon } from 'lucide-react';
 import { useState } from 'react';
 import { sectionHeadings } from '../../data'; // 경로 수정
 
@@ -59,6 +59,17 @@ export function ContactSection() {
                 <div className="max-w-2xl mx-auto">
                     <Card className="bg-gray-800/50 border-slate-700">
                         <CardContent className="p-8">
+                            {/* 구현 후 제거 필요 - START */}
+                            <div className="flex flex-col items-center justify-center gap-2 text-center">
+                                <HardHatIcon className="h-8 w-8 text-red-300" />
+                                <label
+                                    htmlFor="name"
+                                    className="block text-lg font-medium text-red-400 mb-4"
+                                >
+                                    준비 중인 기능입니다.
+                                </label>
+                            </div>
+                            {/* 구현 후 제거 필요 - END */}
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Input fields... (생략) */}
                                 <div className="grid md:grid-cols-2 gap-6">
@@ -76,7 +87,7 @@ export function ContactSection() {
                                             placeholder="이름을 입력해주세요"
                                             value={formData.name}
                                             onChange={handleInputChange}
-                                            required
+                                            // required
                                             className="bg-slate-700 border-slate-600 text-white placeholder:text-neutral-400 focus:border-slate-500 focus:ring-slate-500"
                                         />
                                     </div>
@@ -94,7 +105,7 @@ export function ContactSection() {
                                             placeholder="example@email.com"
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            required
+                                            // required
                                             className="bg-slate-700 border-slate-600 text-white placeholder:text-neutral-400 focus:border-slate-500 focus:ring-slate-500"
                                         />
                                     </div>
@@ -114,7 +125,7 @@ export function ContactSection() {
                                         placeholder="문의 제목을 입력해주세요"
                                         value={formData.subject}
                                         onChange={handleInputChange}
-                                        required
+                                        // required
                                         className="bg-slate-700 border-slate-600 text-white placeholder:text-neutral-400 focus:border-slate-500 focus:ring-slate-500"
                                     />
                                 </div>
@@ -134,7 +145,7 @@ export function ContactSection() {
                                         onChange={handleInputChange}
                                         maxLength={500}
                                         rows={8}
-                                        required
+                                        // required
                                         className="bg-slate-700 border-slate-600 text-white placeholder:text-neutral-400 focus:border-slate-500 focus:ring-slate-500"
                                     />
                                     <div className="text-right text-sm text-neutral-400 mt-1">
